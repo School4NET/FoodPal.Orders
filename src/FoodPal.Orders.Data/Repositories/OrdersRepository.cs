@@ -1,6 +1,8 @@
 ﻿using FoodPal.Orders.Data.Contracts;
+using FoodPal.Orders.Enums;
 using FoodPal.Orders.Models;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FoodPal.Orders.Data.Repositories
@@ -29,6 +31,26 @@ namespace FoodPal.Orders.Data.Repositories
 			{
 				throw new Exception($"Order could not be saved. Reason:{ex.Message}");
 			}
+		}
+
+		public async Task<Order> GetByIdAsync(int orderId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public async Task<(IEnumerable<Order> Orders, int AllOrdersCount)> GetByFiltersAsync(string customerId, OrderStatus? status, int page, int pageSize)
+		{
+			throw new NotImplementedException();
+		}
+
+		public async Task<OrderStatus?> GetStatusAsync(int orderId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public async Task UpdateStatusAsync(Order orderEntity, OrderStatus newStatus)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

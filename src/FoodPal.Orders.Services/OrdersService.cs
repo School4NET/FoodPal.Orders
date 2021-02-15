@@ -1,15 +1,11 @@
 ﻿using FoodPal.Orders.Dtos;
 using FoodPal.Orders.MessageBroker.Contracts;
 using FoodPal.Orders.Services.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FoodPal.Orders.Services
 {
-	public class OrdersService : IOrdersService
+	public class OrdersService : BaseService, IOrdersService
 	{
 		private readonly IMessageBroker _messageBroker;
 
