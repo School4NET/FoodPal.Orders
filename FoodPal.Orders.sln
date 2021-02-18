@@ -31,7 +31,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodPal.Orders.MessageBroke
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodPal.Orders.MessageBroker.ServiceBus", "src\FoodPal.Orders.MessageBroker.ServiceBus\FoodPal.Orders.MessageBroker.ServiceBus.csproj", "{A169702E-7999-46F9-808A-66C9A3D793E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodPal.Orders.Exceptions", "src\FoodPal.Orders.Exceptions\FoodPal.Orders.Exceptions.csproj", "{8FEB8235-8947-4C43-ABFD-BFA075D7E9A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodPal.Orders.Exceptions", "src\FoodPal.Orders.Exceptions\FoodPal.Orders.Exceptions.csproj", "{8FEB8235-8947-4C43-ABFD-BFA075D7E9A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodPal.Orders.BackgroundWorkers", "src\FoodPal.Orders.BackgroundWorkers\FoodPal.Orders.BackgroundWorkers.csproj", "{214A097E-8E0C-4777-A2CA-405ED3E2847B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodPal.Orders.BackgroundServices", "src\FoodPal.Orders.BackgroundServices\FoodPal.Orders.BackgroundServices.csproj", "{9BF1B70F-EEB1-4B35-991C-8E4DEBCAEC50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodPal.Orders.Mappers", "src\FoodPal.Orders.Mappers\FoodPal.Orders.Mappers.csproj", "{E981D130-86A7-465D-B332-521810F18082}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +89,18 @@ Global
 		{8FEB8235-8947-4C43-ABFD-BFA075D7E9A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FEB8235-8947-4C43-ABFD-BFA075D7E9A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FEB8235-8947-4C43-ABFD-BFA075D7E9A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{214A097E-8E0C-4777-A2CA-405ED3E2847B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{214A097E-8E0C-4777-A2CA-405ED3E2847B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{214A097E-8E0C-4777-A2CA-405ED3E2847B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{214A097E-8E0C-4777-A2CA-405ED3E2847B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BF1B70F-EEB1-4B35-991C-8E4DEBCAEC50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BF1B70F-EEB1-4B35-991C-8E4DEBCAEC50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BF1B70F-EEB1-4B35-991C-8E4DEBCAEC50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BF1B70F-EEB1-4B35-991C-8E4DEBCAEC50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E981D130-86A7-465D-B332-521810F18082}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E981D130-86A7-465D-B332-521810F18082}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E981D130-86A7-465D-B332-521810F18082}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E981D130-86A7-465D-B332-521810F18082}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +114,9 @@ Global
 		{FB39FA7E-EBCD-4DCC-AC61-E038C92B3A19} = {69BCE101-4616-4702-BB2B-B3F9F0CC23FA}
 		{A169702E-7999-46F9-808A-66C9A3D793E8} = {69BCE101-4616-4702-BB2B-B3F9F0CC23FA}
 		{8FEB8235-8947-4C43-ABFD-BFA075D7E9A7} = {21334B67-C361-430E-8B44-32C9A1672614}
+		{214A097E-8E0C-4777-A2CA-405ED3E2847B} = {F6586C5F-90FD-4218-9ACF-346508503008}
+		{9BF1B70F-EEB1-4B35-991C-8E4DEBCAEC50} = {F6586C5F-90FD-4218-9ACF-346508503008}
+		{E981D130-86A7-465D-B332-521810F18082} = {21334B67-C361-430E-8B44-32C9A1672614}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D003F3C3-47B3-4D80-9169-448B66BC7ED9}

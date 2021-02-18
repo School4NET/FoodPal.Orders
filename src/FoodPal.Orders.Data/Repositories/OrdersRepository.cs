@@ -31,13 +31,16 @@ namespace FoodPal.Orders.Data.Repositories
 			}
 			catch (Exception ex)
 			{
-				throw new Exception($"Order could not be saved. Reason:{ex.Message}");
+				throw new Exception($"Order could not be saved. Reason:{ex.Message}", ex);
 			}
 		}
 
 		public async Task<Order> GetByIdAsync(int orderId)
 		{
-			return await _ordersContext.FindAsync<Order>(orderId);
+			return await _ordersContext.Orders
+				.Include(x => x.Items)
+				.Include(x => x.DeliveryDetails)
+				.FirstOrDefaultAsync(x => x.Id == orderId);
 		}
 
 		public async Task<(IEnumerable<Order> Orders, int AllOrdersCount)> GetByFiltersAsync(string customerId, OrderStatus? status, int page, int pageSize)
