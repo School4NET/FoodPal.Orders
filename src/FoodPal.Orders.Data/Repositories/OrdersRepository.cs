@@ -1,8 +1,10 @@
 ﻿using FoodPal.Orders.Data.Contracts;
 using FoodPal.Orders.Enums;
 using FoodPal.Orders.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FoodPal.Orders.Data.Repositories
@@ -35,22 +37,37 @@ namespace FoodPal.Orders.Data.Repositories
 
 		public async Task<Order> GetByIdAsync(int orderId)
 		{
-			throw new NotImplementedException();
+			return await _ordersContext.FindAsync<Order>(orderId);
 		}
 
 		public async Task<(IEnumerable<Order> Orders, int AllOrdersCount)> GetByFiltersAsync(string customerId, OrderStatus? status, int page, int pageSize)
 		{
-			throw new NotImplementedException();
+			IQueryable<Order> ordersQuery = _ordersContext.Orders.AsNoTracking();
+
+			if (!string.IsNullOrEmpty(customerId))
+				ordersQuery = _ordersContext.Orders.Where(x => x.CustomerId == customerId);
+
+			if (status.HasValue)
+				ordersQuery = ordersQuery.Where(x => x.Status == status.Value);
+
+			var paginatedOrdersQuery = ordersQuery.Skip(page * pageSize).Take(pageSize);
+
+			var ordersList = await paginatedOrdersQuery.ToListAsync();
+			var allOrdersCount = await ordersQuery.CountAsync();
+
+			return (ordersList, allOrdersCount);
 		}
 
 		public async Task<OrderStatus?> GetStatusAsync(int orderId)
 		{
-			throw new NotImplementedException();
+			var orderStatus = await _ordersContext.Orders.Where(x => x.Id == orderId).Select(x => x.Status).ToListAsync();
+			return orderStatus.FirstOrDefault();
 		}
 
 		public async Task UpdateStatusAsync(Order orderEntity, OrderStatus newStatus)
 		{
-			throw new NotImplementedException();
+			orderEntity.Status = newStatus;
+			await _ordersContext.SaveChangesAsync();
 		}
 	}
 }

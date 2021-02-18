@@ -1,8 +1,9 @@
 ﻿using FoodPal.Orders.Data.Contracts;
 using FoodPal.Orders.Enums;
 using FoodPal.Orders.Models;
-using System;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FoodPal.Orders.Data.Repositories
@@ -18,17 +19,20 @@ namespace FoodPal.Orders.Data.Repositories
 
 		public async Task<OrderItem> GetOrderItemAsync(int orderId, int orderItemId)
 		{
-			throw new NotImplementedException();
+			var orderItem = await _ordersContext.OrderItems.Where(x => x.OrderId == orderId && x.Id == orderItemId).FirstOrDefaultAsync();
+			return orderItem;
 		}
 
 		public async Task<List<OrderItem>> GetItemsAsync(int orderId)
 		{
-			throw new NotImplementedException();
+			var orderItems = await _ordersContext.OrderItems.Where(x => x.OrderId == orderId).ToListAsync();
+			return orderItems;
 		}
 
 		public async Task UpdateStatusAsync(OrderItem orderItemEntity, OrderItemStatus newStatus)
 		{
-			throw new NotImplementedException();
+			orderItemEntity.Status = newStatus;
+			await _ordersContext.SaveChangesAsync();
 		}
 	}
 }
