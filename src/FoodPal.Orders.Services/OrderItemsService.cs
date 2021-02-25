@@ -2,8 +2,10 @@
 using FoodPal.Orders.Dtos;
 using FoodPal.Orders.Enums;
 using FoodPal.Orders.Exceptions;
+using FoodPal.Orders.Models;
 using FoodPal.Orders.Services.Contracts;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FoodPal.Orders.Services
@@ -32,7 +34,7 @@ namespace FoodPal.Orders.Services
 			switch (orderItemPatch.PropertyName.ToLowerInvariant())
 			{
 				case "status":
-					await _orderUoW.OrderItemsRepository.UpdateStatusAsync(orderItem, ParseOrderItemStatus(orderItemPatch.PropertyValue.ToString()));
+					await UpdateOrderItemStatusAsync(orderId, orderItem, ParseOrderItemStatus(orderItemPatch.PropertyValue.ToString()));
 					break;
 
 				default:
@@ -41,6 +43,16 @@ namespace FoodPal.Orders.Services
 		}
 
 		#region Private Methods
+
+		private async Task UpdateOrderItemStatusAsync(int orderId, OrderItem orderItem, OrderItemStatus newStatus)
+		{
+			await _orderUoW.OrderItemsRepository.UpdateStatusAsync(orderItem, newStatus);
+
+			var updatedOrder = await _orderUoW.OrdersRepository.GetByIdAsync(orderId);
+
+			if (updatedOrder.Items.All(x => x.Status == OrderItemStatus.Ready))
+				await _orderUoW.OrdersRepository.UpdateStatusAsync(updatedOrder, OrderStatus.ReadyForPickup);
+		}
 
 		private OrderItemStatus ParseOrderItemStatus(string orderItemStatus)
 		{
